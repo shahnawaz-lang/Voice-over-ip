@@ -24,13 +24,17 @@ class isdn_tuple:
 
 class isdn_parse(isdn_tuple):
     
-    def __init__(self, string=None):
+    def __init__(self, text_file=None):
         super().__init__()
         self._templates = ['calling_nums.template', 'isdn.template', 'ccapi.template']
         self._isdn_linitial = []
         self._isdn_lmgs = []
         self._isdn_ldial_peers = []
         self._call_nums = {}
+        
+           
+        with open(text_file) as file: 
+            string = file.read()
         
         with ExitStack() as stack:
             temps = [stack.enter_context(open_file(file)) for file in self._templates]
