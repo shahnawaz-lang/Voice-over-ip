@@ -24,7 +24,7 @@ class isdn_tuple:
 
 class isdn_parse(isdn_tuple):
     
-    def __init__(self, text_file=None):
+    def __init__(self, string=None):
         super().__init__()
         self._templates = ['calling_nums.template', 'isdn.template', 'ccapi.template']
         self._isdn_linitial = []
@@ -37,13 +37,13 @@ class isdn_parse(isdn_tuple):
             
             tmp1, tmp2, tmp3 = textfsm.TextFSM(temps[0]), textfsm.TextFSM(temps[1]), textfsm.TextFSM(temps[2])
             
-            for t1 in tmp1.ParseText(text_file):
+            for t1 in tmp1.ParseText(string):
                 self._isdn_linitial.append((self._isdn_tinitial(*t1)))
             
-            for t2 in tmp2.ParseText(text_file):
+            for t2 in tmp2.ParseText(string):
                 self._isdn_lmgs.append((self._isdn_tmgs(*t2)))
                 
-            for t3 in tmp3.ParseText(text_file):
+            for t3 in tmp3.ParseText(string):
                 self._isdn_ldial_peers.append((self._isdn_tdial_peers(*t3)))
                 
             for mgs in self._isdn_linitial:
