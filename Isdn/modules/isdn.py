@@ -17,8 +17,9 @@ class isdn_tuple:
     def __init__(self):
         
         self._isdn_tinitial = namedtuple('isdn_tinitial', 'callref calling_number called_number')
-        self._isdn_tmgs = namedtuple('isdn_tmgs', 'Id date sig int prot trans msg pd callref')
+        self._isdn_tmgs = namedtuple('isdn_tmgs', 'date sig int prot trans msg pd callref')
         self._isdn_tdial_peers = namedtuple('isdn_tdial_peers', 'ccapi_id calling_num called_num in_dial out_dial')
+        
         
 
 class isdn_parse(isdn_tuple):
@@ -61,16 +62,21 @@ class isdn_parse(isdn_tuple):
             calls[self._call_nums[callrefs[ref]] if (callrefs[ref] in self._call_nums) else 0] = list(filter(lambda i: callrefs[ref][3:6] == i.callref[3:6], self._isdn_lmgs))
         return calls   
     
-    def ladder(self):
+    def ladder(self, call, isdn_lst):
+        print(f'----------------------------\n')
+        print(f'calling number = {call.calling_num}, called number = {call.called_num}\n')
+        print(f'Incoming dial-peer = {call.in_dial}, Outgoing dial-peer = {call.out_dial}\n')
+        for c in isdn_lst:
+            print(f'{c.int}')              
+            if c.trans == 'RX':
+                print(f'PROIVDER ---({c.msg})--> ROUTER[{c.callref}]\n')
+            elif c.trans == 'TX':
+                print(f'PROIVDER <--({c.msg})--- ROUTER[{c.callref}]\n')
+
+    def print_ladder(self, search=False, calllingNum=None, calledNum=None):
         for call, isdn_lst in self.get_calls().items():
-            print(f'----------------------------\n')
-            print(f'calling number = {call.calling_num}, called number = {call.called_num}\n')
-            print(f'Incoming dial-peer = {call.in_dial}, Outgoing dial-peer = {call.out_dial}\n')
-            for c in isdn_lst:
-                print(f'{c.int}')              
-                if c.trans == 'RX':
-                    print(f'PROIVDER ---({c.msg})--> ROUTER[{c.callref}]\n')
-                elif c.trans == 'TX':
-                    print(f'PROIVDER <--({c.msg})--- ROUTER[{c.callref}]\n')
-
-
+            if search: 
+                if (call.calling_num == calllingNum) & (call.called_num == calledNum): 
+                    self.ladder(call, isdn_lst)
+            else:
+                self.ladder(call, isdn_lst)
