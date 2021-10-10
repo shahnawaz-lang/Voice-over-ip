@@ -1,14 +1,18 @@
-Value ccapi_val (\w+)
-Value calling_num (\d+)
-Value called_num (\d+)
-Value in_dial (\d+)
-Value out_dial (\d+)
+Value Ccapi_val (\w+)
+Value Calling_num (\d+)
+Value Called_num (\d+)
+Value In_dial (\d+)
+Value Out_dial (\d+)
+Value Disconnect (\d+)
+
 
 
 Start
-  ^\d+:\s+[*]\w{0,3}\s+\d\s+\d\d:\d\d:\d\d.\d\d\d:\s+//\d+/${ccapi_val}/CCAPI/cc_api_call_setup_ind_common:
-  ^\s+Calling Number=${calling_num}
-  ^\s+Called Number=${called_num}
-  ^\s+Incoming Dial-peer=${in_dial}
-  ^\d+:\s+[*]\w{0,3}\s+\d\s+\d\d:\d\d:\d\d.\d\d\d:\s+//\d+/${ccapi_val}/CCAPI/ccCallSetupRequest:
-  ^\s+Outgoing Dial-peer=${out_dial} -> Record
+  ^\d+:\s+[*]\w{0,3}\s+\d\s+\d{0,3}:\d{0,3}:\d{0,3}.\d{0,3}:\s+//[-]\d+/${Ccapi_val}/CCAPI/cc_api_call_setup_ind_common:
+  ^\s+Calling\s+Number=${Calling_num}
+  ^\s+Called\s+Number=${Called_num}
+  ^\s+Incoming\s+Dial-peer=${In_dial}
+  ^\d+:\s+[*]\w{0,3}\s+\d\s+\d{0,3}:\{0,3}:\d{0,3}.\d{0,3}:\s+//[-]\d+/${Ccapi_val}/CCAPI/ccCallSetupRequest:
+  ^\s+Outgoing\s+Dial-peer=${Out_dial}
+  ^\d+:\s+[*]\w{0,3}\s+\d\s+\d{0,3}:\d{0,3}:\d{0,3}:\s+//\d+/${Ccapi_val}/CCAPI/cc_api_call_disconnect_done: 
+  ^\s+Call\s+Entry[(]Disconnect\s+Cause=${Disconnect},\s+Voice\s+Class\s+Cause\s+Code=\d+,\s+Retry\s+Count=\d+[)] -> Record
