@@ -44,7 +44,7 @@ class isdn_parse(isdn):
             
             self._isdn_linitial = [self._isdn_linitial(*t1) for t1 in tmp1.ParseText(string)]
             self._isdn_lmgs = [self._isdn_linitial(*t2) for t2 in tmp2.ParseText(string)]
-            self._isdn_ldial_peers = [self._isdn_ldial_peers(t3) for t3 in tmp3.ParseText(string)]
+            self._isdn_ldial_peers = [self._isdn_ldial_peers(*t3) for t3 in tmp3.ParseText(string)]
 
             for mgs in self._isdn_linitial:
                 for dp in self._isdn_ldial_peers:
