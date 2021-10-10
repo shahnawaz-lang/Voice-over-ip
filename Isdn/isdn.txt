@@ -1,4 +1,4 @@
-007043:  *Dec 19 14:09:54.528: ISDN Se0/1/0:23 Q931: RX <- SETUP pd = 8  callref = 0x0139
+007043:  *Dec 19 14:09:54.528: ISDN Se0/1/0:23 Q931: TX <- SETUP pd = 8  callref = 0x0139
         Bearer Capability i = 0x8090A2
                 Standard = CCITT
                 Transfer Capability = Speech
@@ -23,6 +23,7 @@
    Destination=, Calling IE Present=TRUE, Mode=0,
    Outgoing Dial-peer=6, Params=0x3FBCFB4, Progress Indication=NULL(0)
 
+
 007082:  *Dec 19 14:09:54.537: ISDN Se0/1/0:23 Q931: TX -> CALL_PROC pd = 8  callref = 0x8139
         Channel ID i = 0xE9808382
                 Exclusive, Interface 0, Channel 2        
@@ -37,3 +38,48 @@
 007201:  *Dec 19 14:10:58.337: ISDN Se0/1/0:23 Q931: TX -> RELEASE pd = 8  callref = 0x8139
 007227:  *Dec 19 14:10:58.348: ISDN Se0/1/0:23 Q931: RX <- RELEASE_COMP pd = 8  callref = 0x0139
 
+3060415: Sep  1 08:50:22: //18400552/E31295800000/CCAPI/cc_api_call_disconnect_done:
+        Call Entry(Disconnect Cause=16, Voice Class Cause Code=0, Retry Count=0)    
+
+
+007043:  *Dec 19 14:09:54.528: ISDN Se0/1/0:23 Q931: TX <- SETUP pd = 8  callref = 0x0A39
+        Bearer Capability i = 0x8090A2
+                Standard = CCITT
+                Transfer Capability = Speech
+                Transfer Mode = Circuit
+                Transfer Rate = 64 kbit/s
+        Channel ID i = 0xE9808382
+                Exclusive, Interface 0, Channel 2
+        Calling Party Number i = 0x2183, '4538971000'
+                Plan:ISDN, Type:National
+        Called Party Number i = 0xA1, '34774945000'
+                Plan:ISDN, Type:National
+                
+1578304: *Oct  4 18:07:52.330: //-1/D31295800000/CCAPI/cc_api_call_setup_ind_common:
+   Interface=0x1463B428, Call Info(
+   Calling Number=4538971000,(Calling Name=)(TON=Unknown, NPI=Unknown, Screening=User, Passed, Presentation=Allowed),
+   Called Number=34774945000(TON=Unknown, NPI=Unknown),
+   Calling Translated=FALSE, Subscriber Type Str=Unknown, FinalDestinationFlag=TRUE,
+   Incoming Dial-peer=2001, Progress Indication=NULL(0), Calling IE Present=TRUE,
+   Source Trkgrp Route Label=, Target Trkgrp Route Label=, CLID Transparent=FALSE), Call Id=172773
+
+1578323: *Oct  4 18:07:52.334: //172773/D31295800000/CCAPI/ccCallSetupRequest:
+   Destination=, Calling IE Present=TRUE, Mode=0,
+   Outgoing Dial-peer=4, Params=0x3FBCFB4, Progress Indication=NULL(0)    
+
+007082:  *Dec 19 14:09:54.537: ISDN Se0/1/0:23 Q931: TX -> CALL_PROC pd = 8  callref = 0x8A39
+        Channel ID i = 0xE9808382
+                Exclusive, Interface 0, Channel 2        
+007130:  *Dec 19 14:09:56.328: ISDN Se0/1/0:23 Q931: TX -> PROGRESS pd = 8  callref = 0x8A39
+        Progress Ind i = 0x8188 - In-band info or appropriate now available
+007136:  *Dec 19 14:09:59.219: ISDN Se0/1/0:23 Q931: TX -> PROGRESS pd = 8  callref = 0x8A39
+007152:  *Dec 19 14:10:28.524: ISDN Se0/1/0:23 Q931: TX -> CONNECT pd = 8  callref = 0x8A39
+        Connected Number i = 0x8080, '18774945000'
+007154:  *Dec 19 14:10:28.536: ISDN Se0/1/0:23 Q931: RX <- CONNECT_ACK pd = 8  callref = 0x0A39
+007199:  *Dec 19 14:10:58.336: ISDN Se0/1/0:23 Q931: RX <- DISCONNECT pd = 8  callref = 0x0A39
+        Cause i = 0x8090 - Normal call clearing
+007201:  *Dec 19 14:10:58.337: ISDN Se0/1/0:23 Q931: TX -> RELEASE pd = 8  callref = 0x8A39
+007227:  *Dec 19 14:10:58.348: ISDN Se0/1/0:23 Q931: RX <- RELEASE_COMP pd = 8  callref = 0x0A39
+
+3060415: Sep  1 08:50:22: //18400552/D31295800000/CCAPI/cc_api_call_disconnect_done:
+        Call Entry(Disconnect Cause=26, Voice Class Cause Code=0, Retry Count=0) 
