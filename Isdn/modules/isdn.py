@@ -33,7 +33,7 @@ class isdn_parse():
         self._isdn_lmgs = [isdn_tmgs(*t2) for t2 in tmp2.ParseText(self.text_file)]
         self._isdn_ldial_peers = [isdn_tdial_peers(*t3) for t3 in tmp3.ParseText(self.text_file)]
                
-    def get_calls(self):
+    def parse_calls(self):
         callrefs = [c.callref for c in self._isdn_lmgs if c.msg == "SETUP"]
         calls, call_nums = {}
 
@@ -47,7 +47,7 @@ class isdn_parse():
         return calls   
 
     def print_calls(self, search=False, calllingNum=None, calledNum=None, cause=None):
-        for call, isdn_lst in self.get_calls().items():
+        for call, isdn_lst in self.parse_calls().items():
             if search: 
                 if ((call.calling_num == calllingNum) & (call.called_num == calledNum)) or (call.disconnect == cause): 
                     isdn_ouput.output(call, isdn_lst)

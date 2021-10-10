@@ -9,7 +9,7 @@ parser.add_argument('-cgn', '--calling', help='Calling Number', type=str)
 parser.add_argument('-cdn', '--called', help='Called Number', type=str)
 args = parser.parse_args()
 
-calls = isdn_parse(args.file)
+calls = isdn.isdn_parse(args.file)
 calls.print_calls(search=args.search, calllingNum=args.calling, calledNum=args.called)
 
 
