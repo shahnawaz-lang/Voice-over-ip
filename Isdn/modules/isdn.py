@@ -27,7 +27,6 @@ class isdn_parse(isdn):
     
     def __init__(self, text_file=None):
         super().__init__()
-        
         self._isdn_linitial = []
         self._isdn_lmgs = []
         self._isdn_ldial_peers = []
@@ -40,11 +39,11 @@ class isdn_parse(isdn):
         with ExitStack() as stack:
             temps = [stack.enter_context(open_file(f'modules/templates/{file}')) for file in self._isdn_templates]
             
-            tmp1, tmp2, tmp3 = [*map(textfsm.TextFSM(temps), temps)]
+            tmp1, tmp2, tmp3 = [*map(textfsm.TextFSM, temps)]
             
-            self._isdn_linitial = [self._isdn_linitial(*t1) for t1 in tmp1.ParseText(string)]
-            self._isdn_lmgs = [self._isdn_linitial(*t2) for t2 in tmp2.ParseText(string)]
-            self._isdn_ldial_peers = [self._isdn_ldial_peers(*t3) for t3 in tmp3.ParseText(string)]
+            self._isdn_linitial = [self._isdn_tinitial(*t1) for t1 in tmp1.ParseText(string)]
+            self._isdn_lmgs = [self._isdn_tmgs(*t2) for t2 in tmp2.ParseText(string)]
+            self._isdn_ldial_peers = [self._isdn_tdial_peers(*t3) for t3 in tmp3.ParseText(string)]
 
             for mgs in self._isdn_linitial:
                 for dp in self._isdn_ldial_peers:
