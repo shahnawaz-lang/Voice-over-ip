@@ -6,7 +6,7 @@ templates = ['calling_nums.template', 'isdn.template', 'ccapi.template']
 
 with ExitStack() as stack:
     temps = [stack.enter_context(open_file(file)) for file in templates]
-    temp_data = map(text.TextFSM, temps) 
+    temp_data = list(map(text.TextFSM, temps))
 
  
 
