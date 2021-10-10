@@ -4,8 +4,9 @@ import textfsm
 
 templates = ['calling_nums.template', 'isdn.template', 'ccapi.template']
 
-def get_templates():
-  with ExitStack() as stack:
-    temps = map(textfsm.TextFSM, [stack.enter_context(open_file(file)) for file in templates])
-  return temps
+with ExitStack() as stack:
+    temps = [stack.enter_context(open_file(file)) for file in templates]
+    temp_data = map(text.TextFSM, temps) 
+
+ 
 
