@@ -2,8 +2,10 @@ from modules.util.helper import open_file
 from collections import namedtuple
 from modules.template import temp_data 
 
+#initialize templates 
 tmp1, tmp2, tmp3 = [*temp_data]
 
+#initialize tuples 
 isdn_tinitial = namedtuple('isdn_tinitial', 'callref calling_number called_number')
 isdn_tmgs = namedtuple('isdn_tmgs', 'date sig int prot trans msg pd callref')
 isdn_tdial_peers = namedtuple('isdn_tdial_peers', 'ccapi_id calling_num called_num in_dial out_dial disconnect')
