@@ -26,7 +26,7 @@ class IsdnOutput:
                 print(f'PROIVDER <--({c.msg})--- ROUTER[{c.callref}]\n')
     
         
-class IsdnOutput:
+class IsdnParse:
 
     def __init__(self, text_file=None):
      
