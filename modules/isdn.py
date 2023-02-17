@@ -10,7 +10,7 @@ isdn_tinitial = namedtuple('isdn_tinitial', 'callref calling_number called_numbe
 isdn_tmgs = namedtuple('isdn_tmgs', 'date sig int prot trans msg pd callref')
 isdn_tdial_peers = namedtuple('isdn_tdial_peers', 'ccapi_id calling_num called_num in_dial out_dial disconnect')
 
-class isdn_ouput: 
+class IsdnOutput: 
 
     @staticmethod
     def output(call, isdn_mgs):
@@ -26,7 +26,7 @@ class isdn_ouput:
                 print(f'PROIVDER <--({c.msg})--- ROUTER[{c.callref}]\n')
     
         
-class isdn_parse():
+class IsdnOutput:
 
     def __init__(self, text_file=None):
      
@@ -55,8 +55,8 @@ class isdn_parse():
         for call, isdn_lst in self.parse_calls().items():
             if search: 
                 if ((call.calling_num == calllingNum) & (call.called_num == calledNum)) or (call.disconnect == cause): 
-                    isdn_ouput.output(call, isdn_lst)
+                    IsdnOuput.output(call, isdn_lst)
             else:
-                isdn_ouput.output(call, isdn_lst)
+                IsdnOuput.output(call, isdn_lst)
 
 
