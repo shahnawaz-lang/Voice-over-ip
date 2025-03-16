@@ -1,4 +1,0 @@
-textfsm
-more-itertools
-pydantic
-typing-extensions

@@ -1,0 +1,18 @@
+Value Ccapi_val (\w+)
+Value Calling_num (\d+)
+Value Called_num (\d+)
+Value In_dial (\d+)
+Value Out_dial (\d+)
+Value Disconnect (\d+)
+
+
+
+Start
+  ^.*//-1/${Ccapi_val}/CCAPI/cc_api_display_ie_subfields:
+  ^\s+cisco-ani=${Calling_num}
+  ^\s+dest=${Called_num}
+  ^\s+Incoming\s+Dial-peer=${In_dial}
+  ^.*//\d+/${Ccapi_val}/CCAPI/ccCallSetupRequest:
+  ^\s+Outgoing\s+Dial-peer=${Out_dial}
+  ^.*//\d+/${Ccapi_val}/CCAPI/cc_api_call_disconnect_done: 
+  ^\s+Call\s+Entry[(]Disconnect\s+Cause=${Disconnect},\s+Voice\s+Class\s+Cause\s+Code=\d+,\s+Retry\s+Count=\d+[)] -> Record

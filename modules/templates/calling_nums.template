@@ -1,9 +1,0 @@
-Value callref (\w+)
-Value calling_number (\w+)
-Value called_number (\w+)
-
-Start
-  ^.*SETUP\s+pd\s+=\s+\d\s+callref\s+=\s+${callref}
-  ^\s+Calling\sParty\sNumber\s+i\s+=\s+\w+,\s+'${calling_number}'
-  ^\s+Called\sParty\sNumber\s+i\s+=\s+\w+,\s+'${called_number}' -> Record
-  
