@@ -3,7 +3,7 @@ Value sig (ISDN)
 Value int (Se\d/\d/\d:\d\d)
 Value prot (Q931)
 Value trans (RX|TX)
-Value message (SETUP|CALL_PROC|PROGRESS|CONNECT|CONNECT_ACK|DISCONNECT|RELEASE|RELEASE_COMP) 
+Value message (SE TUP|CALL_PROC|PROGRESS|CONNECT|CONNECT_ACK|DISCONNECT|RELEASE|RELEASE_COMP)
 Value pd (8)
 Value callref (\w+)
 

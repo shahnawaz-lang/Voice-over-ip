@@ -1,11 +1,23 @@
-from modules.util.helper import open_file
-from contextlib import ExitStack
+"""
+  Template module:
+    FSM templates for parsing ISDN and CCAPI messages
+"""
+from typing import List
+from contextlib import contextmanager, ExitStack
 import textfsm
 
-templates = ['calling_nums.template', 'isdn.template', 'ccapi.template']
-with ExitStack() as stack:
-  files = [stack.enter_context(open_file(f'modules/templates/{file}')) for file in templates]
-  data = list(map(textfsm.TextFSM, files))
 
- 
+@contextmanager
+def open_file(file_name: str):
+    file = open(file_name)
+    try:
+        yield file
+    finally:
+        file.close()
 
+
+def read_fsm_templates(template_names: List[str], template_path: str) -> list:
+    with ExitStack() as stack:
+        files = [stack.enter_context(open_file(f"{template_path}/{file}.template")) for file in template_names]
+        data = list(map(textfsm.TextFSM, files))
+    return data
